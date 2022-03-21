@@ -7,37 +7,37 @@
     <title>Document</title>
 </head>
 <body>
-<form action="index.php" method="POST">
- <input type="text" name="pole">
- <input type="submit">
+<form method="POST">
+<label for="pole">Napište sem celá čísla oddělená čárkou bez mezer</label>  
+<input type="array" name="pole"></input>
+<input type="submit" name="submit"></input>
 </form>
-
-<?php
-function bubbleSort (array $arr) {
-
-    $n = sizeof($arr);
-    for ($i = 1; $i < $n; $i++) { 
-        for ($j = $n - 1; $j <= $i; $j--) { 
-            if ($arr[$j - 1] > $arr[$j]) {
-            $pom = $arr[$j - 1];
-            $arr[$j - 1] = $arr[$j];
-            $arr[$j] = $pom;
+<?
+function bubble_sort($arr) {
+    $size = count($arr)-1;
+    for ($i=0; $i<$size; $i++) {
+        for ($j=0; $j<$size-$i; $j++) {
+            $k = $j+1;
+            if ($arr[$k] < $arr[$j]) {
+                list($arr[$j], $arr[$k]) = array($arr[$k], $arr[$j]);
             }
         }
     }
     return $arr;
 }
 
-$formPole = filter_input(INPUT_POST, 'pole');
-var_dump($formPole);
-$pok = bubbleSort($data);
-$pole = explode(",", $formPole);
+$arr = $_POST["pole"];
+explode(",", $arr);
+print("Před seřazením: ");
+print_r($arr);
 
-$pocetCisel = count($pole);
-for ($i=0; $i < $pocetCisel ; $i++) { 
-    echo $pole[$i] . "," ;
-}
+$arr = bubble_sort($arr);
 
+print("Po seřazení: ");
+print_r($arr);
 ?>
+
 </body>
-</html> 
+</html>
+
+
